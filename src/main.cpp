@@ -13,7 +13,7 @@ set<string> results;
 
 bool cmpf(float a, float b = 24) { return fabs(a - b) < 0.000005f; }
 
-float calc2(float a, float b, string s) {
+float calculate_basic_arithmetic(float a, float b, string s) {
   if (s == "+") {
     return a + b;
   }
@@ -29,13 +29,14 @@ float calc2(float a, float b, string s) {
   return UNDEF;
 }
 
-float calc3(stack<float> &oprd, stack<string> &optr) {
+float stack_calculation(stack<float> &oprd, stack<string> &optr) {
   float second_number = oprd.top();
   oprd.pop();
   float first_number = oprd.top();
   oprd.pop();
 
-  float result = calc2(first_number, second_number, optr.top());
+  float result =
+      calculate_basic_arithmetic(first_number, second_number, optr.top());
   if (result == UNDEF)
     return UNDEF;
 
@@ -46,7 +47,7 @@ float calc3(stack<float> &oprd, stack<string> &optr) {
   return result;
 }
 
-float calc(vector<string> s) {
+float calculate_operation(vector<string> s) {
   stack<float> oprd;
   stack<string> optr;
 
@@ -60,7 +61,7 @@ float calc(vector<string> s) {
           x == "(") {
         optr.push(x);
       } else if (x == ")" || ((x == "-" || x == "+") && oprd.size() >= 2)) {
-        if (calc3(oprd, optr) == UNDEF)
+        if (stack_calculation(oprd, optr) == UNDEF)
           return UNDEF;
         if (x == ")")
           optr.pop();
@@ -69,7 +70,7 @@ float calc(vector<string> s) {
   }
 
   while (!optr.empty()) {
-    if (calc3(oprd, optr) == UNDEF)
+    if (stack_calculation(oprd, optr) == UNDEF)
       return UNDEF;
   }
 
@@ -124,7 +125,7 @@ string generate_string(vector<string> data) {
 }
 
 void write_to_file(string file_name) {
-  ofstream new_file("test/" + file_name + ".txt");
+  ofstream new_file("output/" + file_name + ".txt");
   for (auto result : results) {
     new_file << result << '\n';
   }
@@ -191,7 +192,7 @@ void search() {
             s[optr_indexs[0]] = optr[i];
             s[optr_indexs[1]] = optr[j];
             s[optr_indexs[2]] = optr[k];
-            float res = calc(s);
+            float res = calculate_operation(s);
             if (cmpf(res)) {
               results.insert(generate_string(s));
               solutions_found++;
@@ -225,7 +226,7 @@ int main() {
   string choice;
 
   cout << "===\n";
-  cout << "WELCOME TO 24 GAME SOLVER!\n";
+  cout << "WELCOME TO 24 CARD GAME SOLVER!\n";
   cout << "===\n\n";
 
   while (choice != "1" && choice != "2") {
@@ -284,7 +285,7 @@ int main() {
       getline(cin, file_name);
     } while (!validate_file_name(file_name));
     write_to_file(file_name);
-    cout << "Result saved to test/" << file_name << ".txt\n";
+    cout << "Result saved to output/" << file_name << ".txt\n";
   }
 
   double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
