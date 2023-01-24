@@ -126,6 +126,11 @@ string generate_string(vector<string> data) {
 
 void write_to_file(string file_name) {
   ofstream new_file("output/" + file_name + ".txt");
+  new_file << "Cards: ";
+  for (auto card : numbers) {
+    new_file << card << ' ';
+  }
+  new_file << '\n' << results.size() << " solution(s) found.\n";
   for (auto result : results) {
     new_file << result << '\n';
   }

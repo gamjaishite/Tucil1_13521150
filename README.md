@@ -10,19 +10,17 @@ mengubah 4 buah angka random sehingga mendapatkan hasil akhir sejumlah 24.
 3. Gunakan perintah di bawah ini pada terminal untuk menjalankan program
 
     ```bash
-    // linux
-    ./bin/linux
+    ./bin/unix # linux-based
 
-    // windows
-    ./bin/win
+    ./bin/win # windows
     ```
 4. Jika program berjalan dengan sesuai, Anda akan melihat tampilan sebagai berikut,
 
     ![Tampilan Awal](./statics/tampilan-awal.png)
 
-### Optional
+### Opsional
 
-Jika Anda ingin melakukan kompilasi program dapat menggunakan perintah di bawah ini
+Jika Anda ingin melakukan kompilasi program, dapat menggunakan perintah di bawah ini,
 
 ```bash
 g++ -o ./bin/<nama_executable> ./src/main.cpp
