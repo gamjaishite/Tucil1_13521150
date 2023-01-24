@@ -10,7 +10,7 @@ mengubah 4 buah angka random sehingga mendapatkan hasil akhir sejumlah 24.
 3. Gunakan perintah di bawah ini pada terminal untuk menjalankan program
 
     ```bash
-    ./bin/unix # linux-based
+    ./bin/unix # linux/mac
 
     ./bin/win # windows
     ```
